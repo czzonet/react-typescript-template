@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node --files -P ./script/tsconfig.json ./script/start.ts"
+    "start": "ts-node --files -P ./script/tsconfig.json ./script/start.ts",
+    "build": "ts-node --files -P ./script/tsconfig.json ./script/build.ts"
   },
   "repository": {
     "type": "git",
