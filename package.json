@@ -18,6 +18,12 @@
     "url": "https://github.com/czzonet/react-typescript-template/issues"
   },
   "homepage": "https://github.com/czzonet/react-typescript-template#readme",
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
   "devDependencies": {
     "@babel/core": "^7.13.8",
     "@babel/preset-env": "^7.13.9",
@@ -60,11 +66,5 @@
     "chalk": "^4.1.0",
     "get-port": "^5.1.1",
     "log-symbols": "^4.0.0"
-  },
-  "browserslist": [
-    "last 2 versions",
-    "Firefox ESR",
-    "> 1%",
-    "ie >= 11"
-  ]
+  }
 }
