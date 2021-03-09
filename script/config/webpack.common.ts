@@ -13,8 +13,8 @@ export const commonConfig: Configuration = {
   output: {
     publicPath: "/",
     path: resolvePath(projectRoot, "./dist"),
-    filename: "js/[name]-[hash].bundle.js",
-    hashSalt: projectName || "react template",
+    filename: "js/[name]-[fullhash].bundle.js",
+    hashSalt: projectName,
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
@@ -34,7 +34,7 @@ export const commonConfig: Configuration = {
           {
             loader: "css-loader",
             options: {
-              modules: false,
+              modules: true,
               sourceMap: true,
               importLoaders: 1,
             },
@@ -42,7 +42,6 @@ export const commonConfig: Configuration = {
           {
             loader: "sass-loader",
             options: {
-              // 中间每个 loader 都要开启 sourcemap，才能生成正确的 soucemap
               sourceMap: true,
             },
           },
