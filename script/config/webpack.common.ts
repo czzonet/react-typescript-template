@@ -62,6 +62,10 @@ export const commonConfig: Configuration = {
           },
         ],
       },
+      {
+        test: /\.svg$/,
+        use: ["file-loader"],
+      },
     ],
   },
   plugins: [
