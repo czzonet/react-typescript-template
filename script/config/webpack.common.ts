@@ -34,13 +34,28 @@ export const commonConfig: Configuration = {
           {
             loader: "css-loader",
             options: {
-              modules: true,
+              modules: {
+                localIdentName: "[local]--[hash:base64:5]",
+                exportLocalsConvention: "camelCase",
+              },
               sourceMap: true,
               importLoaders: 1,
             },
           },
           {
             loader: "sass-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
             options: {
               sourceMap: true,
             },
