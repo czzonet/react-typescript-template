@@ -34,7 +34,10 @@ export const commonConfig: Configuration = {
           {
             loader: "css-loader",
             options: {
-              modules: true,
+              modules: {
+                localIdentName: "[local]--[hash:base64:5]",
+                exportLocalsConvention: "camelCase",
+              },
               sourceMap: true,
               importLoaders: 1,
             },
@@ -46,6 +49,22 @@ export const commonConfig: Configuration = {
             },
           },
         ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        use: ["file-loader"],
       },
     ],
   },
