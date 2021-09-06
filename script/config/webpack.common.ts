@@ -27,29 +27,29 @@ export const commonConfig: Configuration = {
         options: {},
         exclude: /node_modules/,
       },
-      {
-        test: /\.scss$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: {
-                localIdentName: "[local]--[hash:base64:5]",
-                exportLocalsConvention: "camelCase",
-              },
-              sourceMap: true,
-              importLoaders: 1,
-            },
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
-      },
+      // {
+      //   test: /\.scss$/,
+      //   use: [
+      //     "style-loader",
+      //     {
+      //       loader: "css-loader",
+      //       options: {
+      //         modules: {
+      //           localIdentName: "[local]--[hash:base64:5]",
+      //           exportLocalsConvention: "camelCase",
+      //         },
+      //         sourceMap: true,
+      //         importLoaders: 1,
+      //       },
+      //     },
+      //     {
+      //       loader: "sass-loader",
+      //       options: {
+      //         sourceMap: true,
+      //       },
+      //     },
+      //   ],
+      // },
       {
         test: /\.css$/,
         use: [

@@ -29,7 +29,7 @@ const start = async () => {
   setupCompilerMiddleware(compiler, app);
 
   const httpServer = http.createServer(app).listen(port, HOST, () => {
-    const tip = `DevServer is running at ${chalk.magenta.underline(address)}${
+    const tip = `DevServer is running at ${chalk.magenta.underline(address)} ${
       logSymbols.success
     }`;
 
