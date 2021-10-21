@@ -1,11 +1,11 @@
 import { Configuration } from "webpack";
 import { projectName, projectRoot, resolvePath } from "../env";
 import webpackBar from "webpackbar";
-import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
 import webpackBuildNotifier from "webpack-build-notifier";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
+import { tslOption } from "./tslOption";
 
 export const commonConfig: Configuration = {
   context: projectRoot,
@@ -17,14 +17,22 @@ export const commonConfig: Configuration = {
     hashSalt: projectName,
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
   module: {
     rules: [
+      // {
+      //   test: /\.(tsx?|js)$/,
+      //   loader: "babel-loader",
+      //   options: {},
+      //   exclude: /node_modules/,
+      // },
       {
-        test: /\.(tsx?|js)$/,
-        loader: "babel-loader",
-        options: {},
+        test: /\.tsx?$/,
+        use: {
+          loader: "ts-loader",
+          options: tslOption,
+        },
         exclude: /node_modules/,
       },
       // {
@@ -73,7 +81,6 @@ export const commonConfig: Configuration = {
       name: "react-template",
       color: "#61dafb",
     }),
-    new FriendlyErrorsWebpackPlugin({}),
     new webpackBuildNotifier(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({

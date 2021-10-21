@@ -11,7 +11,7 @@
 - [x] immer
 - [x] recoil
 
-其中webpack自定义配置热重载服务器。
+其中webpack自定义配置热重载服务器。从babel-loader改为使用ts-loader。
 
 ## 项目结构
 
