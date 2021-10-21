@@ -12,6 +12,9 @@ export const Hello = () => {
 };
 
 const Style = styled.div`
+  display: flex;
+  flex-direction: column;
+
   .title {
     font-size: 36px;
 
