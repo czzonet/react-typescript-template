@@ -40,5 +40,5 @@ export const runBuild = async (isProd?: boolean) => {
     console.log("\n[I] Main compiled!");
   }
 
-  // process.exit(0);
+  process.exit(0);
 };
