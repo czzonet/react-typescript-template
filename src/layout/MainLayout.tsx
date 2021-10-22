@@ -1,13 +1,16 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { StyleSheetManager } from "styled-components";
 import { BLUE } from "../cssConfig";
 import { HomePage } from "../page/HomePage";
 
 export const MainLayout = () => {
   return (
-    <Style>
-      <HomePage></HomePage>
-    </Style>
+    /** 禁用css旧浏览器兼容前缀 */
+    <StyleSheetManager disableVendorPrefixes>
+      <Style>
+        <HomePage></HomePage>
+      </Style>
+    </StyleSheetManager>
   );
 };
 

@@ -5,6 +5,7 @@ import webpackBuildNotifier from "webpack-build-notifier";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
+import WebpackBundleAnalyzer from "webpack-bundle-analyzer";
 import { tslOption } from "./tslOption";
 
 export const commonConfig: Configuration = {
@@ -13,7 +14,7 @@ export const commonConfig: Configuration = {
   output: {
     publicPath: "/",
     path: resolvePath(projectRoot, "./dist"),
-    filename: "js/[name]-[fullhash].bundle.js",
+    filename: "js/[name].[contenthash].js",
     hashSalt: projectName,
   },
   resolve: {
@@ -21,20 +22,25 @@ export const commonConfig: Configuration = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.(tsx?|js)$/,
-      //   loader: "babel-loader",
-      //   options: {},
-      //   exclude: /node_modules/,
-      // },
       {
-        test: /\.tsx?$/,
-        use: {
-          loader: "ts-loader",
-          options: tslOption,
-        },
+        test: /\.(tsx?)$/,
+        use: [
+          "babel-loader",
+          {
+            loader: "ts-loader",
+            options: tslOption,
+          },
+        ],
         exclude: /node_modules/,
       },
+      // {
+      //   test: /\.tsx?$/,
+      //   use: {
+      //     loader: "ts-loader",
+      //     options: tslOption,
+      //   },
+      //   exclude: /node_modules/,
+      // },
       // {
       //   test: /\.scss$/,
       //   use: [
@@ -97,5 +103,29 @@ export const commonConfig: Configuration = {
         },
       ],
     }),
+    // new WebpackBundleAnalyzer.BundleAnalyzerPlugin(),
   ],
+  optimization: {
+    splitChunks: {
+      // include all types of chunks
+      chunks: "all",
+      maxInitialRequests: Infinity,
+      // minSize: 0,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name(module) {
+            // get the name. E.g. node_modules/packageName/not/this/part.js
+            // or node_modules/packageName
+            const packageName = module.context.match(
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+            )[1];
+
+            // npm package names are URL-safe, but some servers don't like @ symbols
+            return `npm.${packageName.replace("@", "")}`;
+          },
+        },
+      },
+    },
+  },
 };
