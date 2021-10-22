@@ -6,6 +6,7 @@ import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import WebpackBundleAnalyzer from "webpack-bundle-analyzer";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import { tslOption } from "./tslOption";
 
 export const commonConfig: Configuration = {
@@ -104,6 +105,7 @@ export const commonConfig: Configuration = {
       ],
     }),
     // new WebpackBundleAnalyzer.BundleAnalyzerPlugin(),
+    new ForkTsCheckerWebpackPlugin({ async: false }),
   ],
   optimization: {
     splitChunks: {
